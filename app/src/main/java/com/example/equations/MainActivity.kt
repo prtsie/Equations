@@ -28,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
+import kotlin.math.roundToInt
 import kotlin.random.Random
 
 var isStarted: MutableState<Boolean>? = null
@@ -121,7 +122,11 @@ fun Greeting() {
                 Text(incorrect!!.value.toString(), fontSize = TextUnit(4f, TextUnitType.Em))
             }
         }
-        Text("0.00%", fontSize = TextUnit(10f, TextUnitType.Em))
+        if (incorrect!!.value == 0) {
+            Text("100%", fontSize = TextUnit(10f, TextUnitType.Em))
+        } else {
+            Text("${(correct!!.value.toDouble() / (correct!!.value + incorrect!!.value) * 10000).roundToInt() / 100.0}%", fontSize = TextUnit(10f, TextUnitType.Em))
+        }
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
