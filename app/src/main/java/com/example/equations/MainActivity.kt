@@ -164,14 +164,15 @@ fun Greeting() {
                 input!!.value,
                 { i ->
                     if(i.count() < 3) {
-                        input!!.value = i
-                        if (i.isNotEmpty()) {
-                            parsedInput!!.value = i.toInt()
+                        input!!.value = i.filter { c -> c.isDigit() }
+                        if (input!!.value.isNotEmpty()) {
+                            parsedInput!!.value = input!!.value.toIntOrNull() ?: 0
                         }
                     }
                 },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 textStyle = TextStyle(fontSize = TextUnit(7f, TextUnitType.Em)),
+                enabled = isStarted!!.value,
                 modifier = Modifier.width(70.dp)
             )
         }
