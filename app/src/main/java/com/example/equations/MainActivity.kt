@@ -109,7 +109,7 @@ fun Greeting() {
                     backColor!!.value = Color.White.copy(green = colorSaturation, blue = colorSaturation)
                 }
                 colorSaturation += 0.01f
-                delay(10)
+                delay(20)
             }
         }
     }
